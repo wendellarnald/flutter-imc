@@ -1,6 +1,6 @@
 # Flutter IMC
 
-
+The purpose of this project is to calculate the BMI, a simple app to learn the language of flutter.
 
 ## Author
 
