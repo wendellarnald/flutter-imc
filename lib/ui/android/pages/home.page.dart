@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:imc/blocs/bmi.bloc.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -6,6 +7,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  var bloc = new BmiBloc();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,6 +20,7 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: EdgeInsets.all(20),
             child: TextFormField(
+              controller: bloc.heightCtrl,
               decoration: InputDecoration(
                 labelText: "Your Height",
               ),
@@ -26,6 +30,7 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: EdgeInsets.all(20),
             child: TextFormField(
+              controller: bloc.weightCtrl,
               decoration: InputDecoration(
                 labelText: "Your Weight",
               ),
@@ -35,7 +40,7 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: EdgeInsets.all(20),
             child: Text(
-              "Your BMI: ",
+              bloc.result,
               textAlign: TextAlign.center,
             ),
           ),
@@ -49,7 +54,11 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.white,
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                setState(() {
+                  bloc.calculate();
+                });
+              },
             ),
           ),
         ],
